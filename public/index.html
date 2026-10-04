@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Baymax - Agent Orchestration Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <div class="logo">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v6l4 2"/>
+            <circle cx="9" cy="14" r="1"/>
+            <circle cx="15" cy="14" r="1"/>
+          </svg>
+          <span class="title">Baymax</span>
+        </div>
+        <span class="subtitle">Agent Orchestration Dashboard</span>
+      </div>
+      <div class="header-center">
+        <div class="connection-status" id="connectionStatus">
+          <span class="status-dot"></span>
+          <span>Connecting...</span>
+        </div>
+      </div>
+      <div class="header-right">
+        <button class="btn-icon" id="fullscreenBtn" title="Fullscreen">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+          </svg>
+        </button>
+        <button class="btn-icon" id="refreshBtn" title="Refresh Agents">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Left Panel: Agent Tree -->
+      <aside class="panel panel-left" id="agentTreePanel">
+        <div class="panel-header">
+          <h2>Agent Network</h2>
+          <div class="panel-actions">
+            <button class="btn-small" id="expandAllBtn">Expand All</button>
+            <button class="btn-small" id="collapseAllBtn">Collapse All</button>
+          </div>
+        </div>
+        <div class="panel-content">
+          <div class="agent-tree" id="agentTree"></div>
+        </div>
+      </aside>
+
+      <!-- Center Panel: Chat -->
+      <section class="panel panel-center" id="chatPanel">
+        <div class="panel-header">
+          <h2>Communication Channel</h2>
+          <div class="agent-selector">
+            <select id="targetAgent" title="Target agent (All = broadcast)">
+              <option value="all">📢 All Agents</option>
+              <option value="baymax">☤ Baymax</option>
+              <option value="tars">🔍 TARS</option>
+              <option value="heisenberg">⚗️ Heisenberg</option>
+              <option value="saul">📊 Saul</option>
+              <option value="ryuk">📝 Ryuk</option>
+              <option value="ghost">👻 Ghost</option>
+            </select>
+          </div>
+        </div>
+        <div class="panel-content chat-container">
+          <div class="chat-messages" id="chatMessages"></div>
+          <div class="chat-input-area">
+            <input type="text" id="chatInput" placeholder="Type a message to your agents..." autocomplete="off">
+            <button class="btn-primary" id="sendBtn">Send</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Panel: Agent Details & Commands -->
+      <aside class="panel panel-right" id="agentDetailPanel">
+        <div class="panel-header">
+          <h2 id="detailTitle">Agent Details</h2>
+        </div>
+        <div class="panel-content">
+          <div class="agent-detail" id="agentDetail">
+            <div class="detail-placeholder">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 6v6l4 2"/>
+              </svg>
+              <p>Select an agent from the tree to view details and send commands</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Status Bar -->
+    <footer class="status-bar">
+      <div class="status-item">
+        <span class="label">Agents Online:</span>
+        <span class="value" id="agentsOnline">0/6</span>
+      </div>
+      <div class="status-item">
+        <span class="label">Messages:</span>
+        <span class="value" id="messageCount">0</span>
+      </div>
+      <div class="status-item">
+        <span class="label">Uptime:</span>
+        <span class="value" id="uptime">00:00:00</span>
+      </div>
+      <div class="status-item right">
+        <span class="label">WebSocket:</span>
+        <span class="value" id="wsStatus">Connecting</span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

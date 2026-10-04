@@ -1,0 +1,36 @@
+{
+  "name": "baymax-web-app",
+  "version": "1.0.0",
+  "description": "Baymax Agent Orchestration Dashboard - Real-time monitoring and communication with your AI agent team",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Muntasir-Mamun7/baymax-web-app.git"
+  },
+  "keywords": [
+    "baymax",
+    "agent",
+    "orchestration",
+    "dashboard",
+    "websocket",
+    "real-time",
+    "ai-agents"
+  ],
+  "author": "Muntasir Al Mamun",
+  "license": "MIT",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Muntasir-Mamun7/baymax-web-app/issues"
+  },
+  "homepage": "https://github.com/Muntasir-Mamun7/baymax-web-app#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.5",
+    "express": "^5.2.1",
+    "ws": "^8.22.0"
+  }
+}
