@@ -2,6 +2,10 @@
 
 A real-time web dashboard for monitoring and communicating with your AI agent team (Baymax + 5 subagents).
 
+## 🌐 Live Demo
+
+**[https://baymax-web-app.vercel.app](https://baymax-web-app.vercel.app)** ← *Deployed on Vercel*
+
 ## Features
 
 - **Real-time Agent Tree Visualization** - Interactive tree showing all 6 agents with live status indicators
@@ -39,6 +43,10 @@ npm start
 baymax-web-app/
 ├── server.js          # Express + WebSocket backend
 ├── package.json
+├── railway.json       # Railway deployment config
+├── render.yaml        # Render deployment config
+├── vercel.json        # Vercel deployment config
+├── Dockerfile         # Docker deployment
 └── public/
     ├── index.html     # Main dashboard HTML
     ├── styles.css     # Complete styling
@@ -71,6 +79,14 @@ baymax-web-app/
 
 ## Deployment
 
+### One-Click Deploy
+
+| Platform | Config | Deploy |
+|----------|--------|--------|
+| **Vercel** | `vercel.json` | [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Muntasir-Mamun7/baymax-web-app) |
+| **Railway** | `railway.json` | [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template?template=https://github.com/Muntasir-Mamun7/baymax-web-app) |
+| **Render** | `render.yaml` | [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Muntasir-Mamun7/baymax-web-app) |
+
 ### Local
 ```bash
 npm start
@@ -85,14 +101,22 @@ pm2 startup
 ```
 
 ### Docker
-```dockerfile
-FROM node:20-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci --only=production
-COPY . .
-EXPOSE 3000
-CMD ["node", "server.js"]
+```bash
+docker build -t baymax-web-app .
+docker run -p 3000:3000 baymax-web-app
+```
+
+Or use the included `Dockerfile`.
+
+### Docker Compose
+```yaml
+version: '3.8'
+services:
+  baymax-web-app:
+    build: .
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
 ```
 
 ## Environment Variables
@@ -100,6 +124,7 @@ CMD ["node", "server.js"]
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `PORT` | `3000` | Server port |
+| `NODE_ENV` | `development` | Environment mode |
 
 ## License
 
